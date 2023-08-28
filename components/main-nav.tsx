@@ -7,6 +7,7 @@ import {
   BiCategoryAlt,
   BiCollection,
   BiPalette,
+  BiShoppingBag,
 } from "react-icons/bi";
 
 export default function MainNav() {
@@ -76,6 +77,22 @@ export default function MainNav() {
             }`}
           >
             Colors
+          </span>
+        </Link>
+        <Link href="/products" className="flex items-center gap-2">
+          <BiShoppingBag
+            className={`${
+              pathname === "/products"
+                ? "dark:text-lime-500 opacity-100"
+                : "opacity-75"
+            } h-5 w-5`}
+          />
+          <span
+            className={`${
+              pathname === "/products" ? "opacity-100" : "opacity-75"
+            }`}
+          >
+            Products
           </span>
         </Link>
       </div>

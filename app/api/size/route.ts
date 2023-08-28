@@ -21,3 +21,14 @@ export async function POST(request: Request) {
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
+
+export async function GET(request: Request) {
+  try {
+    const size = await prisma.size.findMany();
+
+    return NextResponse.json(size, { status: 201 });
+  } catch (error) {
+    console.log(error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
+}

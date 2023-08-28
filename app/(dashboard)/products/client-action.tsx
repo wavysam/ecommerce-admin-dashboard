@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Color } from "./columns";
+import { Product } from "./columns";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Copy, Edit, Trash } from "lucide-react";
 import AlertModal from "@/components/alert-modal";
@@ -16,7 +16,7 @@ import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 
 interface Props {
-  data: Color;
+  data: Product;
 }
 
 export default function ClientAction({ data }: Props) {
@@ -28,7 +28,7 @@ export default function ClientAction({ data }: Props) {
   const onDelete = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/color/${data.id}`, {
+      const res = await fetch(`/api/product/${data.id}`, {
         method: "DELETE",
       });
 
@@ -36,13 +36,13 @@ export default function ClientAction({ data }: Props) {
         router.refresh();
         toast({
           title: "Success!",
-          description: "Size removed.",
+          description: "Product removed.",
         });
       } else {
         toast({
           variant: "destructive",
           title: "Uh oh! Something went wrong!",
-          description: "Removed first the product using this size.",
+          description: "Failed to remove product.",
         });
       }
     } finally {
@@ -76,7 +76,7 @@ export default function ClientAction({ data }: Props) {
           </DropdownMenuItem>
           <DropdownMenuItem
             className="cursor-pointer"
-            onClick={() => router.push(`/colors/${data.id}/edit`)}
+            onClick={() => router.push(`/products/${data.id}/edit`)}
           >
             <Edit className="h-4 w-4 mr-2" />
             Edit

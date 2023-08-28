@@ -5,21 +5,46 @@ import ClientAction from "./client-action";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Color = {
+export type Product = {
   id: string;
   name: string;
-  value: string;
+  price: number;
+  category: string;
+  size: string;
+  color: string;
+  isFeatured: boolean;
+  isPaid: boolean;
   createdAt: string;
 };
 
-export const columns: ColumnDef<Color>[] = [
+export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "name",
     header: "Name",
   },
   {
-    accessorKey: "value",
-    header: "Value",
+    accessorKey: "price",
+    header: "Price",
+  },
+  {
+    accessorKey: "category",
+    header: "Category",
+  },
+  {
+    accessorKey: "size",
+    header: "Size",
+  },
+  {
+    accessorKey: "color",
+    header: "Color",
+  },
+  {
+    accessorKey: "isFeatured",
+    header: "isFeatured",
+  },
+  {
+    accessorKey: "isPaid",
+    header: "isPaid",
   },
   {
     accessorKey: "createdAt",
@@ -28,9 +53,9 @@ export const columns: ColumnDef<Color>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const colors = row.original;
+      const products = row.original;
 
-      return <ClientAction data={colors} />;
+      return <ClientAction data={products} />;
     },
   },
 ];
